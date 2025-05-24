@@ -20,7 +20,7 @@ class Command(BaseCommand):
         for _ in range(20):
             cliente = Cliente.objects.create(
                 nombre=fake.name(),
-                telefono=fake.numerify(text='##########')[:10],
+                telefono=fake.numerify(text='##########')[:15],
                 direccion=fake.address()
             )
             clientes.append(cliente)
