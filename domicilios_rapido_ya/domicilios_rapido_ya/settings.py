@@ -17,7 +17,7 @@ import os
 load_dotenv()
 
 
-DB_ENGINE = os.getenv('DB_ENGINE', 'oracle').lower()
+DB_ENGINE = os.getenv('DB_ENGINE', 'mysql').lower()
 
 if DB_ENGINE == 'mysql':
     ENGINE = 'django.db.backends.mysql'
@@ -65,7 +65,7 @@ INSTALLED_APPS = [
     'MisApps.clientes.apps.ClientesConfig',
     'MisApps.actividad_recorrido.apps.ActividadRecorridoConfig',
     'MisApps.pedido_producto.apps.PedidoProductoConfig',
-    'MisApps.repartidor_vehiculo.apps.RepartidorVehiculoConfig',
+    'MisApps.repartidor_vehiculo.apps.RepartidorVehiculoConfig'
 ]
 
 MIDDLEWARE = [

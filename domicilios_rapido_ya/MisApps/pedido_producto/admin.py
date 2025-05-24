@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pedido, Producto_Servicio, Pedido_Producto_Servicio
+from MisApps.pedido_producto.models import Pedido, Producto_Servicio, Pedido_Producto_Servicio
 
 @admin.register(Pedido)
 class PedidoAdmin(admin.ModelAdmin):
