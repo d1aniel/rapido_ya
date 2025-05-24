@@ -1,5 +1,4 @@
-# actividad_recorrido/admin.py
-#ya tengo sueño
+
 from django.contrib import admin
 from MisApps.actividad_recorrido.models import Recorrido, Actividad
 from MisApps.repartidor_vehiculo.models import Repartidor 
