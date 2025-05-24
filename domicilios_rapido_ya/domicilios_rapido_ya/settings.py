@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'MisApps.clientes.apps.ClientesConfig',
+    'MisApps.actividad_recorrido.apps.ActividadRecorridoConfig',
+    'MisApps.pedido_producto.apps.PedidoProductoConfig',
+    'MisApps.repartidor_vehiculo.apps.RepartidorVehiculoConfig',
 ]
 
 MIDDLEWARE = [

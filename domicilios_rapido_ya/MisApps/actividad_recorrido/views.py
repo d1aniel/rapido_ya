@@ -6,4 +6,4 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return HttpResponse("Bienvenidos, Uniguajira!- Aplicación clientes")
+    return HttpResponse("Bienvenidos, Uniguajira!- Aplicación acitividad recorrido")
