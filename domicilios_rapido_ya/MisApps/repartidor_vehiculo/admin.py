@@ -1,11 +1,19 @@
 from django.contrib import admin
-from MyApps.repartidor_vehiculo.models import Vehiculo, Repartidor
+from MisApps.repartidor_vehiculo.models import Vehiculo, Repartidor
+
+@admin.register(Vehiculo)
+class VehiculoAdmin(admin.ModelAdmin):
+    list_display = ('id', 'marca', 'modelo', 'placa', 'tipo')
+    search_fields = ('marca', 'modelo', 'placa')
+
+@admin.register(Repartidor)
+class RepartidorAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nombre', 'telefono', 'vehiculo')
+    search_fields = ('nombre', 'telefono', 'vehiculo__placa')
 
 class VehiculoInline(admin.StackedInline):
     model = Vehiculo
-    extra = 1  # número de formularios adicionales vacíos
-    max_num = 1  # solo permitir un vehículo por repartidor
-    can_delete = False
+    extra = 1
 
 class RepartidorAdmin(admin.ModelAdmin):
     list_display = ('id', 'nombre', 'telefono', 'vehiculo')

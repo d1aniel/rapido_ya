@@ -19,7 +19,7 @@ class Vehiculo(models.Model):
 class Repartidor(models.Model):
     nombre = models.CharField(max_length=100, null=True, blank=True)
     telefono = models.CharField(max_length=15, null=True, blank=True)
-    vehiculo = models.ForeignKey(Vehiculo, on_delete=models.CASCADE, db_column='id_vehiculo')
+    vehiculo = models.OneToOneField(Vehiculo, on_delete=models.CASCADE, db_column='id_vehiculo')
 
     class Meta:
         db_table = 'Repartidor'
