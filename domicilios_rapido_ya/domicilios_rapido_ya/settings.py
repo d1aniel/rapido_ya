@@ -11,6 +11,31 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+
+DB_ENGINE = os.getenv('DB_ENGINE', 'oracle').lower()
+
+if DB_ENGINE == 'mysql':
+    ENGINE = 'django.db.backends.mysql'
+    NAME = os.getenv('DB_NAME', '')
+elif DB_ENGINE == 'postgresql':
+    ENGINE = 'django.db.backends.postgresql'
+    NAME = os.getenv('DB_NAME', '')
+elif DB_ENGINE == 'sqlserver':
+    ENGINE = 'mssql'
+    NAME = os.getenv('DB_NAME', '')
+elif DB_ENGINE == 'oracle':
+    ENGINE = 'django.db.backends.oracle'
+    # Para Oracle, NAME debe ser la cadena de conexión completa
+    # Si DB_NAME ya viene como "host:port/service", úsalo tal cual
+    # Si tienes host, port y service separados, puedes construirlo así:
+    NAME = os.getenv('DB_NAME', f"{os.getenv('DB_HOST', 'localhost')}:{os.getenv('DB_PORT', '1521')}/{os.getenv('DB_SERVICE', 'xe')}")
+else:
+    raise ValueError(f"Unsupported DB_ENGINE: {DB_ENGINE}")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,8 +103,14 @@ WSGI_APPLICATION = 'domicilios_rapido_ya.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': ENGINE,
+        'NAME': os.getenv('DB_NAME', ''),
+        'USER': os.getenv('DB_USER', ''),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', ''),
+        'PORT': os.getenv('DB_PORT', ''),
+        # SQL Server extra options
+        **({'OPTIONS': {'driver': 'ODBC Driver 17 for SQL Server'}} if DB_ENGINE == 'sqlserver' else {})
     }
 }
 
