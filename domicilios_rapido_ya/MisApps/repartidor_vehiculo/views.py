@@ -1,9 +1,11 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework import viewsets
+from .models import Vehiculo, Repartidor
+from .serializers import VehiculoSerializer, RepartidorSerializer
 
+class VehiculoViewSet(viewsets.ModelViewSet):
+    queryset = Vehiculo.objects.all()
+    serializer_class = VehiculoSerializer
 
-# Create your views here.
-
-
-def home(request):
-    return HttpResponse("Bienvenidos, Uniguajira!- Aplicación repartidor vehiculo")
+class RepartidorViewSet(viewsets.ModelViewSet):
+    queryset = Repartidor.objects.all()
+    serializer_class = RepartidorSerializer

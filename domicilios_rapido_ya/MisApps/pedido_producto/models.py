@@ -27,8 +27,17 @@ class Pedido(models.Model):
 
 
 class Pedido_Producto_Servicio(models.Model):
-    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, db_column='id_pedido')
-    producto_servicio = models.ForeignKey(Producto_Servicio, on_delete=models.CASCADE, db_column='id_producto_servicio')
+    pedido = models.ForeignKey(
+        Pedido,
+        on_delete=models.CASCADE,
+        db_column='id_pedido',
+        related_name='productos'  # <-- esto es lo importante
+    )
+    producto_servicio = models.ForeignKey(
+        Producto_Servicio,
+        on_delete=models.CASCADE,
+        db_column='id_producto_servicio'
+    )
     cantidad = models.PositiveIntegerField()
     precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
 

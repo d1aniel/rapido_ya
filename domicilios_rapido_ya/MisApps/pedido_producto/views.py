@@ -1,9 +1,19 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework import viewsets
+from .models import Producto_Servicio, Pedido, Pedido_Producto_Servicio
+from .serializers import (
+    ProductoServicioSerializer,
+    PedidoSerializer,
+    PedidoProductoServicioSerializer
+)
 
+class ProductoServicioViewSet(viewsets.ModelViewSet):
+    queryset = Producto_Servicio.objects.all()
+    serializer_class = ProductoServicioSerializer
 
-# Create your views here.
+class PedidoViewSet(viewsets.ModelViewSet):
+    queryset = Pedido.objects.all()
+    serializer_class = PedidoSerializer
 
-
-def home(request):
-    return HttpResponse("Bienvenidos, Uniguajira!- Aplicación pedido producto")
+class PedidoProductoServicioViewSet(viewsets.ModelViewSet):
+    queryset = Pedido_Producto_Servicio.objects.all()
+    serializer_class = PedidoProductoServicioSerializer

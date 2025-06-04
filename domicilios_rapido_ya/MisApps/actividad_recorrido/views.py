@@ -1,9 +1,11 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework import viewsets
+from .models import Recorrido, Actividad
+from .serializers import RecorridoSerializer, ActividadSerializer
 
+class RecorridoViewSet(viewsets.ModelViewSet):
+    queryset = Recorrido.objects.all()
+    serializer_class = RecorridoSerializer
 
-# Create your views here.
-
-
-def home(request):
-    return HttpResponse("Bienvenidos, Uniguajira!- Aplicación acitividad recorrido")
+class ActividadViewSet(viewsets.ModelViewSet):
+    queryset = Actividad.objects.all()
+    serializer_class = ActividadSerializer

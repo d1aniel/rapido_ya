@@ -65,10 +65,14 @@ INSTALLED_APPS = [
     'MisApps.clientes.apps.ClientesConfig',
     'MisApps.actividad_recorrido.apps.ActividadRecorridoConfig',
     'MisApps.pedido_producto.apps.PedidoProductoConfig',
-    'MisApps.repartidor_vehiculo.apps.RepartidorVehiculoConfig'
+    'MisApps.repartidor_vehiculo.apps.RepartidorVehiculoConfig',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -155,3 +159,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:4200',
+)
